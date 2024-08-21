@@ -9,9 +9,6 @@ router.post("/",
     [
         body("name").notEmpty()
             .withMessage("todo name required"),
-        body("description")
-            .notEmpty()
-            .withMessage("description required")
     ],
     validator,
     addTodo
