@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 import { validator } from "../middlewares/validator.middleware.js";
 import { addTodo, deleteTodo, fetchTodos, updateTodo } from "../controllers/todo.controllers.js";
 
@@ -17,11 +17,8 @@ router.post("/",
     addTodo
 
 )
-
-router.put("/:id", updateTodo)
-// todo: add isAuthenticated middleware
+router.put("/:id", [body("completed").isBoolean().withMessage("completed should be true or false"), param("id").isMongoId().withMessage("invalid todo id")], validator, updateTodo);
 router.get("/", fetchTodos);
-
-router.delete("/:id", deleteTodo)
+router.delete("/:id", [param("id").isMongoId().withMessage("invalid todo id")], validator, deleteTodo)
 
 export default router;
