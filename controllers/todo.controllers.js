@@ -50,3 +50,17 @@ export async function fetchTodos(req, res, next) {
         next(error)
     }
 }
+
+export async function deleteTodo(req, res, next) {
+    try {
+        const { id } = req.params;
+        const todo = await Todo.findByIdAndDelete(id);
+        res.status(200).json({
+            status: "todo deleted",
+            todo
+        })
+    } catch (error) {
+        console.log({ error })
+        next(error)
+    }
+}

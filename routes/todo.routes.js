@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { body } from "express-validator";
 import { validator } from "../middlewares/validator.middleware.js";
-import { addTodo, fetchTodos, updateTodo } from "../controllers/todo.controllers.js";
+import { addTodo, deleteTodo, fetchTodos, updateTodo } from "../controllers/todo.controllers.js";
 
 const router = Router();
 
@@ -18,8 +18,10 @@ router.post("/",
 
 )
 
-router.patch("/:id", updateTodo)
+router.put("/:id", updateTodo)
 // todo: add isAuthenticated middleware
 router.get("/", fetchTodos);
+
+router.delete("/:id", deleteTodo)
 
 export default router;
