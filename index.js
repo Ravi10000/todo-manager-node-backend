@@ -13,7 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/user", userRouter);
-app.use("/api/todos", isAuthenticated, todoRouter);
+
+app.use("/api/todos",  todoRouter);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
