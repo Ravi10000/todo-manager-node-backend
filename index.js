@@ -7,8 +7,10 @@ import userRouter from "./routes/user.routes.js";
 import { errorHandler } from './middlewares/error-handler.middleware.js';
 import { connectDB } from './utils/connect-db.js';
 import { isAuthenticated } from './middlewares/auth.middleware.js';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
