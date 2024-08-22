@@ -47,10 +47,8 @@ export async function loginUser(req, res, next) {
 
 export async function fetchProfile(req, res, next) {
     try {
-        console.log({ user: req.user });
-
         const user = await User.findById(req.user._id).select('email');
-        if (!user) throw new Error("unauthorised", { cause: { status: 403 } });
+        if (!user) throw new Error("unauthorized", { cause: { status: 403 } });
         res.status(200).json({
             status: "success",
             message: "profile fetched",

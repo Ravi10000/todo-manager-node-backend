@@ -14,7 +14,7 @@ router.post("/",
     addTodo
 
 )
-router.put("/:id", [body("completed").isBoolean().withMessage("completed should be true or false"), param("id").isMongoId().withMessage("invalid todo id")], validator, updateTodo);
+router.put("/:id", [body("completed").isBoolean().withMessage("completed should be true or false").optional(), param("id").isMongoId().withMessage("invalid todo id")], validator, updateTodo);
 router.get("/", fetchTodos);
 router.delete("/:id", [param("id").isMongoId().withMessage("invalid todo id")], validator, deleteTodo)
 
